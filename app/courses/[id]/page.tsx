@@ -1,9 +1,11 @@
-'use client';
+"use client";
 
-import { courses } from '@/lib/courses';
-import Link from 'next/link';
-import Image from 'next/image';
-import { useParams } from 'next/navigation';
+import { courses } from "@/lib/courses";
+import Link from "next/link";
+import Image from "next/image";
+import { useParams } from "next/navigation";
+
+import EnrollButton from "@/components/EnrollButton";
 
 export default function CoursePage() {
   const params = useParams();
@@ -15,7 +17,9 @@ export default function CoursePage() {
       <main className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
         <div className="max-w-6xl mx-auto px-4 py-12">
           <div className="text-center">
-            <h1 className="text-3xl font-bold text-gray-800 mb-4">Curso no encontrado</h1>
+            <h1 className="text-3xl font-bold text-gray-800 mb-4">
+              Curso no encontrado
+            </h1>
             <Link href="/" className="text-blue-600 hover:underline text-lg">
               ← Volver al catálogo
             </Link>
@@ -30,7 +34,10 @@ export default function CoursePage() {
       {/* Back Button */}
       <div className="bg-white shadow-sm py-4">
         <div className="max-w-6xl mx-auto px-4">
-          <Link href="/" className="text-blue-600 hover:text-blue-800 font-semibold">
+          <Link
+            href="/"
+            className="text-blue-600 hover:text-blue-800 font-semibold"
+          >
             ← Volver al catálogo
           </Link>
         </div>
@@ -49,7 +56,7 @@ export default function CoursePage() {
                 className="object-cover"
                 onError={(e) => {
                   const img = e.target as HTMLImageElement;
-                  img.src = 'https://via.placeholder.com/500x400?text=Curso';
+                  img.src = "https://via.placeholder.com/500x400?text=Curso";
                 }}
               />
             </div>
@@ -72,17 +79,24 @@ export default function CoursePage() {
               <div className="space-y-3 mb-6">
                 <div className="flex items-center gap-2">
                   <span className="text-2xl">👨‍🏫</span>
-                  <span>Por: <strong>{course.instructor}</strong></span>
+                  <span>
+                    Por: <strong>{course.instructor}</strong>
+                  </span>
                 </div>
 
                 <div className="flex items-center gap-2">
                   <span className="text-2xl">⏱️</span>
-                  <span>Duración: <strong>{course.duration}</strong></span>
+                  <span>
+                    Duración: <strong>{course.duration}</strong>
+                  </span>
                 </div>
 
                 <div className="flex items-center gap-2">
                   <span className="text-2xl">👥</span>
-                  <span>Estudiantes: <strong>{course.students.toLocaleString()}</strong></span>
+                  <span>
+                    Estudiantes:{" "}
+                    <strong>{course.students.toLocaleString()}</strong>
+                  </span>
                 </div>
 
                 <div className="flex items-center gap-2">
@@ -94,10 +108,7 @@ export default function CoursePage() {
               </div>
 
               <div className="text-4xl font-bold mb-6">${course.price}</div>
-
-              <button className="w-full bg-white text-blue-600 font-bold py-4 rounded-lg hover:bg-gray-100 transition text-lg">
-                Inscribirse al curso
-              </button>
+              <EnrollButton course={course} />
             </div>
           </div>
         </div>
@@ -110,48 +121,69 @@ export default function CoursePage() {
           <div className="md:col-span-2">
             {/* What you'll learn */}
             <div className="bg-white rounded-lg shadow-md p-8 mb-8">
-              <h2 className="text-2xl font-bold text-gray-800 mb-4">¿Qué aprenderás?</h2>
+              <h2 className="text-2xl font-bold text-gray-800 mb-4">
+                ¿Qué aprenderás?
+              </h2>
               <ul className="space-y-3">
                 <li className="flex items-start gap-3">
                   <span className="text-green-500 font-bold text-xl">✓</span>
-                  <span className="text-gray-700">Conceptos fundamentales del área de estudio</span>
+                  <span className="text-gray-700">
+                    Conceptos fundamentales del área de estudio
+                  </span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-green-500 font-bold text-xl">✓</span>
-                  <span className="text-gray-700">Técnicas y herramientas profesionales</span>
+                  <span className="text-gray-700">
+                    Técnicas y herramientas profesionales
+                  </span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-green-500 font-bold text-xl">✓</span>
-                  <span className="text-gray-700">Proyectos prácticos y casos reales</span>
+                  <span className="text-gray-700">
+                    Proyectos prácticos y casos reales
+                  </span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-green-500 font-bold text-xl">✓</span>
-                  <span className="text-gray-700">Mejores prácticas de la industria</span>
+                  <span className="text-gray-700">
+                    Mejores prácticas de la industria
+                  </span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-green-500 font-bold text-xl">✓</span>
-                  <span className="text-gray-700">Certificado de finalización</span>
+                  <span className="text-gray-700">
+                    Certificado de finalización
+                  </span>
                 </li>
               </ul>
             </div>
 
             {/* Course Content */}
             <div className="bg-white rounded-lg shadow-md p-8 mb-8">
-              <h2 className="text-2xl font-bold text-gray-800 mb-4">Contenido del Curso</h2>
+              <h2 className="text-2xl font-bold text-gray-800 mb-4">
+                Contenido del Curso
+              </h2>
               <div className="space-y-4">
                 {[1, 2, 3, 4].map((section) => (
-                  <div key={section} className="border-l-4 border-blue-600 pl-4 py-2">
-                    <h3 className="font-bold text-gray-800">Sección {section}</h3>
+                  <div
+                    key={section}
+                    className="border-l-4 border-blue-600 pl-4 py-2"
+                  >
+                    <h3 className="font-bold text-gray-800">
+                      Sección {section}
+                    </h3>
                     <p className="text-gray-600 text-sm">
                       {section === 1
-                        ? 'Introducción y configuración inicial'
+                        ? "Introducción y configuración inicial"
                         : section === 2
-                          ? 'Conceptos clave y teoría'
+                          ? "Conceptos clave y teoría"
                           : section === 3
-                            ? 'Proyectos prácticos'
-                            : 'Proyecto final y conclusiones'}
+                            ? "Proyectos prácticos"
+                            : "Proyecto final y conclusiones"}
                     </p>
-                    <p className="text-gray-500 text-xs mt-1">3-4 lecciones • {3 + section} minutos</p>
+                    <p className="text-gray-500 text-xs mt-1">
+                      3-4 lecciones • {3 + section} minutos
+                    </p>
                   </div>
                 ))}
               </div>
@@ -159,7 +191,9 @@ export default function CoursePage() {
 
             {/* Requirements */}
             <div className="bg-white rounded-lg shadow-md p-8">
-              <h2 className="text-2xl font-bold text-gray-800 mb-4">Requisitos</h2>
+              <h2 className="text-2xl font-bold text-gray-800 mb-4">
+                Requisitos
+              </h2>
               <ul className="space-y-2 text-gray-700">
                 <li>• Computadora con conexión a internet</li>
                 <li>• Software necesario (se proporciona en el curso)</li>
@@ -173,11 +207,15 @@ export default function CoursePage() {
           <div>
             {/* Quick Info */}
             <div className="bg-white rounded-lg shadow-md p-6 mb-6">
-              <h3 className="font-bold text-gray-800 mb-4">Información del Curso</h3>
+              <h3 className="font-bold text-gray-800 mb-4">
+                Información del Curso
+              </h3>
               <div className="space-y-3 text-sm">
                 <div>
                   <p className="text-gray-600">Categoría</p>
-                  <p className="font-semibold text-gray-800">{course.category}</p>
+                  <p className="font-semibold text-gray-800">
+                    {course.category}
+                  </p>
                 </div>
                 <div>
                   <p className="text-gray-600">Nivel</p>
@@ -185,11 +223,15 @@ export default function CoursePage() {
                 </div>
                 <div>
                   <p className="text-gray-600">Duración Total</p>
-                  <p className="font-semibold text-gray-800">{course.duration}</p>
+                  <p className="font-semibold text-gray-800">
+                    {course.duration}
+                  </p>
                 </div>
                 <div>
                   <p className="text-gray-600">Instructor</p>
-                  <p className="font-semibold text-gray-800">{course.instructor}</p>
+                  <p className="font-semibold text-gray-800">
+                    {course.instructor}
+                  </p>
                 </div>
                 <div>
                   <p className="text-gray-600">Calificación</p>
@@ -203,7 +245,9 @@ export default function CoursePage() {
 
             {/* Reviews */}
             <div className="bg-white rounded-lg shadow-md p-6">
-              <h3 className="font-bold text-gray-800 mb-4">Reseñas de Estudiantes</h3>
+              <h3 className="font-bold text-gray-800 mb-4">
+                Reseñas de Estudiantes
+              </h3>
               <div className="space-y-4">
                 {[1, 2].map((review) => (
                   <div key={review} className="border-b pb-4">
@@ -212,12 +256,15 @@ export default function CoursePage() {
                         👤
                       </div>
                       <div>
-                        <p className="font-semibold text-gray-800">Estudiante {review}</p>
+                        <p className="font-semibold text-gray-800">
+                          Estudiante {review}
+                        </p>
                         <p className="text-yellow-400 text-sm">★★★★★</p>
                       </div>
                     </div>
                     <p className="text-gray-700 text-sm">
-                      Excelente curso, muy bien explicado y con muchos ejercicios prácticos.
+                      Excelente curso, muy bien explicado y con muchos
+                      ejercicios prácticos.
                     </p>
                   </div>
                 ))}
