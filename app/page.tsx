@@ -76,16 +76,8 @@ export default function Home() {
       </section>
 
       <section className="mx-auto max-w-6xl px-4 py-12">
-        <div className="mb-8 rounded-3xl border border-slate-200 bg-white p-4 shadow-sm">
-          <input
-            type="text"
-            placeholder="Buscar por curso, categoría o instructor..."
-            value={searchQuery}
-            onChange={(event) => setSearchQuery(event.target.value)}
-            className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-5 py-4 text-slate-900 outline-none transition focus:border-blue-500 focus:bg-white"
-          />
-        </div>
 
+        {/* Section search bar */}
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-4">
           <aside className="lg:col-span-1">
             <div className="sticky top-4 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
