@@ -18,7 +18,7 @@ export default function CoursePage() {
         <div className="max-w-6xl mx-auto px-4 py-12">
           <div className="text-center">
             <h1 className="text-3xl font-bold text-gray-800 mb-4">
-              No se encontro el curso
+              Curso no encontrado
             </h1>
             <Link href="/" className="text-blue-600 hover:underline text-lg">
               ← Volver al catálogo
