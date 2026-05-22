@@ -61,7 +61,7 @@ export default function Home() {
           <div className="mt-8 grid max-w-3xl grid-cols-1 gap-4 sm:grid-cols-3">
             <div className="rounded-2xl border border-white/10 bg-white/10 p-4 backdrop-blur">
               <p className="text-3xl font-black">{courses.length}</p>
-              <p className="text-sm text-slate-300">Cursos disponibles</p>
+              <p className="text-sm text-slate-300">Cursos con disponibilidad</p>
             </div>
             <div className="rounded-2xl border border-white/10 bg-white/10 p-4 backdrop-blur">
               <p className="text-3xl font-black">{categories.length}</p>
