@@ -33,9 +33,9 @@ export default async function Home({ searchParams }: HomeProps) {
   const levelParam = normalizeParam(params.level);
   const selectedLevel = isValidLevel(levelParam) ? levelParam : "";
 
-  const filteredCourses = courses.filter((course) => {
-    const normalizedQuery = query.toLowerCase();
+  const normalizedQuery = query.toLowerCase();
 
+  const filteredCourses = courses.filter((course) => {
     const matchCategory =
       !selectedCategory || course.category === selectedCategory;
 
