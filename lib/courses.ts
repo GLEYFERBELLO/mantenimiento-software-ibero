@@ -1,17 +1,4 @@
-export interface Course {
-  id: string;
-  title: string;
-  description: string;
-  category: string;
-  price: number;
-  image: string;
-  instructor: string;
-  rating: number;
-  students: number;
-  duration: string;
-  level: "Beginner" | "Intermediate" | "Advanced";
-  levelLabel: "Principiante" | "Intermedio" | "Avanzado";
-}
+import type { Course } from "@/lib/types/course";
 
 export const courses: Course[] = [
   {
@@ -144,4 +131,12 @@ export const courses: Course[] = [
   },
 ];
 
-export const categories = Array.from(new Set(courses.map((course) => course.category)));
+export const categories = Array.from(
+  new Set(courses.map((course) => course.category))
+);
+
+export const levels = [
+  { value: "Beginner", label: "🌱 Principiante" },
+  { value: "Intermediate", label: "📈 Intermedio" },
+  { value: "Advanced", label: "🚀 Avanzado" },
+] as const;

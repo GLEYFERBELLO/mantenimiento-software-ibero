@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Course } from "@/lib/courses";
+import type { Course } from "@/lib/types/course";
 
 export default function EnrollButton({ course }: { course: Course }) {
   const [loading, setLoading] = useState(false);
@@ -32,7 +32,7 @@ export default function EnrollButton({ course }: { course: Course }) {
       }
 
       setMessage("Inscripción realizada correctamente.");
-    } catch (error) {
+    } catch {
       setMessage("Ocurrió un error al inscribirte.");
     } finally {
       setLoading(false);

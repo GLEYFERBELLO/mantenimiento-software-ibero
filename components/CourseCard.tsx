@@ -1,8 +1,6 @@
-"use client";
-
-import { Course } from "@/lib/courses";
 import Link from "next/link";
 import Image from "next/image";
+import type { Course } from "@/lib/types/course";
 
 const formatStudents = (value: number) => {
   return new Intl.NumberFormat("es-CO").format(value);
@@ -16,7 +14,11 @@ const formatPrice = (value: number) => {
   }).format(value);
 };
 
-export default function CourseCard({ course }: { course: Course }) {
+type CourseCardProps = {
+  course: Course;
+};
+
+export default function CourseCard({ course }: CourseCardProps) {
   return (
     <Link href={`/courses/${course.id}`} className="group block h-full">
       <article className="h-full overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-2xl">
@@ -30,10 +32,11 @@ export default function CourseCard({ course }: { course: Course }) {
             priority={course.id === "1"}
           />
 
-          <div className="absolute left-4 top-4 flex gap-2">
+          <div className="absolute left-4 top-4 flex flex-wrap gap-2">
             <span className="rounded-full bg-white/90 px-3 py-1 text-xs font-bold text-slate-800 backdrop-blur">
               {course.category}
             </span>
+
             <span className="rounded-full bg-blue-600/90 px-3 py-1 text-xs font-bold text-white backdrop-blur">
               {course.levelLabel}
             </span>
@@ -53,10 +56,11 @@ export default function CourseCard({ course }: { course: Course }) {
             {course.description}
           </p>
 
-          <div className="mb-4 flex items-center gap-2 text-sm text-slate-600">
+          <div className="mb-4 flex flex-wrap items-center gap-2 text-sm text-slate-600">
             <span className="text-yellow-500">★★★★★</span>
             <span>
-              <strong>{course.rating}</strong> ({formatStudents(course.students)} estudiantes)
+              <strong>{course.rating}</strong> (
+              {formatStudents(course.students)} estudiantes)
             </span>
           </div>
 
@@ -68,11 +72,13 @@ export default function CourseCard({ course }: { course: Course }) {
 
             <div className="rounded-2xl bg-slate-50 p-3">
               <p className="text-slate-500">Instructor</p>
-              <p className="truncate font-bold text-slate-900">{course.instructor}</p>
+              <p className="truncate font-bold text-slate-900">
+                {course.instructor}
+              </p>
             </div>
           </div>
 
-          <div className="mt-auto flex items-center justify-between border-t border-slate-100 pt-4">
+          <div className="mt-auto flex items-center justify-between gap-3 border-t border-slate-100 pt-4">
             <p className="text-2xl font-black text-blue-700">
               {formatPrice(course.price)}
             </p>
